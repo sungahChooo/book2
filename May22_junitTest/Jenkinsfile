@@ -4,21 +4,34 @@ pipeline {
         skipStagesAfterUnstable()
     }
     stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
         stage('Build') {
             steps {
-                sh 'make'
+		sh 'javac-encoding UTF-8 -d classes May22_junitTest/src/**/*.java'                
             }
         }
         stage('Test') {
             steps {
-                sh 'make check'
-                junit 'reports/**/*.xml'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                sh 'make publish'
+                def classpth = "C:\Users\LG_PC\eclipse\java-2024-03\eclipse\plugins/junit-platform-console-standalone-1.7.1.jar"
+
+bat 'java -cp classes C:\Users\LG_PC\eclipse\java-2024-03\eclipse\plugins/junit-platform-console-standalone-1.7.1.jar
+org.junit.platform.console.ConsoleLauncher --scan-classpath > test_result.txt'
             }
         }
     }
+post{
+	always{
+archiveArtifacts 'test_results.txt'
+}
+failure{
+	echo 'Build or test failed'
+}
+success{
+echo 'Build and test succeeded'
+}
+}
 }
