@@ -18,7 +18,6 @@ pipeline {
         stage('Test') {
             steps {
                 def classpth= "C:/Users/LG_PC/eclipse/java-2024-03/eclipse/plugins/junit-platform-console-standalone-1.7.1.jar"
-
 bat 'java -cp classes C:/Users/LG_PC/eclipse/java-2024-03/eclipse/plugins/junit-platform-console-standalone-1.7.1.jar
 org.junit.platform.console.ConsoleLauncher --scan-classpath > test_result.txt'
             }
