@@ -4,7 +4,7 @@ agent any
     stages() {
         stage('git clone') {
             steps() {
-                git 'https://github.com/jiyoung9745/Mission02.git'
+                git 'https://github.com/sungahChooo/book2.git'
             }    
         }
     
@@ -16,8 +16,8 @@ agent any
     
         stage('execute sh') {
             steps {
-                sh "chmod 774 ./Mission01.sh"
-                sh "./Mission.sh"
+                sh "chmod 774 ./book.sh"
+                sh "./book.sh"
             }
         }        
     }
