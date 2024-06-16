@@ -11,14 +11,15 @@ pipeline {
         }
         stage('Build') {
             steps {
-		sh 'javac-encoding UTF-8 -d classes May22_junitTest/src/**/*.java'                
+		sh 'javac -encoding UTF-8 -d classes Practice/src/**/*.java'
+                
             }
         }
         stage('Test') {
             steps {
-                def classpth = "C:\Users\LG_PC\eclipse\java-2024-03\eclipse\plugins/junit-platform-console-standalone-1.7.1.jar"
+                def classpth = "C:\Users\LG_PC\eclipse\java-2024-03\eclipse\plugins\junit-platform-console-standalone-1.7.1.jar"
 
-bat 'java -cp classes C:\Users\LG_PC\eclipse\java-2024-03\eclipse\plugins/junit-platform-console-standalone-1.7.1.jar
+bat 'java -cp classes C:\Users\LG_PC\eclipse\java-2024-03\eclipse\plugins\junit-platform-console-standalone-1.7.1.jar
 org.junit.platform.console.ConsoleLauncher --scan-classpath > test_result.txt'
             }
         }
